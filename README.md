@@ -36,22 +36,28 @@ Then perform the following commands on the root folder:
 | allow\_force\_destroy | Allows full cleanup of resources by disabling any deletion safe guards | `bool` | `false` | no |
 | certmanager\_email | Email used to retrieve SSL certificates from [Let's Encrypt](https://letsencrypt.org) | `any` | n/a | yes |
 | domain | Domain for hosting gitlab functionality (ie mydomain.com would access gitlab at `gitlab.mydomain.com` and the registry at `registry.mydomain.com`) | `string` | `""` | no |
+| gclb\_logging | Enable GCLB logging | `bool` | `false` | no |
+| gcs\_uniform\_access | Use Uniform Bucket Level Access | `bool` | `true` | no |
 | gitlab\_address\_name | Name of the address to use for GitLab ingress | `string` | `""` | no |
 | gitlab\_db\_name | Instance name for the GitLab Postgres database. | `string` | `"gitlab-db"` | no |
 | gitlab\_db\_password | Password for the GitLab Postgres user | `string` | `""` | no |
 | gitlab\_db\_random\_prefix | Sets random suffix at the end of the Cloud SQL instance name. | `bool` | `false` | no |
+| gitlab\_master\_subnet\_cidr | Cidr range to use for gitlab GKE master subnet (only when private nodes are enabled) | `string` | `"10.4.0.0/28"` | no |
 | gitlab\_nodes\_subnet\_cidr | Cidr range to use for gitlab GKE nodes subnet | `string` | `"10.0.0.0/16"` | no |
 | gitlab\_pods\_subnet\_cidr | Cidr range to use for gitlab GKE pods subnet | `string` | `"10.3.0.0/16"` | no |
+| gitlab\_proxy\_only\_subnet\_cidr | Cidr range to use for L7 ILB proxy-only range (when using GCLB) | `string` | `"10.5.0.0/26"` | no |
 | gitlab\_runner\_install | Choose whether to install the gitlab runner in the cluster | `bool` | `true` | no |
 | gitlab\_services\_subnet\_cidr | Cidr range to use for gitlab GKE services subnet | `string` | `"10.2.0.0/16"` | no |
 | gke\_machine\_type | [Machine type](https://cloud.google.com/compute/docs/machine-types) used for the node-pool | `string` | `"n1-standard-4"` | no |
 | gke\_max\_node\_count | Maximum GKE nodes per availability zone | `number` | `2` | no |
 | gke\_min\_node\_count | Mininum GKE nodes per availability zone | `number` | `1` | no |
 | gke\_preemptible\_nodes | [Preemptible VMs](https://cloud.google.com/compute/docs/instances/preemptible) are instances that you can create and run at a much lower price than normal instances. However, Compute Engine might stop (preempt) these instances if it requires access to those resources for other tasks. They're suitable for a GKE development deployment. | `bool` | `false` | no |
+| gke\_private | Create a private GKE cluster | `bool` | `false` | no |
 | gke\_release\_channel | Kubernetes releases updates often, to deliver security updates, fix known issues, and introduce new features. [Release channels](https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels) offer customers the ability to balance between stability and the feature set of the version deployed in the cluster. | `string` | `"REGULAR"` | no |
 | helm\_chart\_version | Helm chart version to install during deployment ([GitLab version mapping](https://docs.gitlab.com/charts/installation/version_mappings.html)) | `string` | `"5.0.3"` | no |
 | project\_id | GCP Project to deploy resources | `any` | n/a | yes |
 | region | GCP region to deploy resources to | `string` | `"us-central1"` | no |
+| use\_gclb | Deploy Gitlab using GCLB, Managed Certificates and Autoneg | `bool` | `false` | no |
 
 ## Outputs
 

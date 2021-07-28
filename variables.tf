@@ -47,6 +47,12 @@ variable "gke_min_node_count" {
   default     = 1
 }
 
+variable "gke_private" {
+  type        = bool
+  default     = false
+  description = "Create a private GKE cluster"
+}
+
 variable "gke_max_node_count" {
   description = "Maximum GKE nodes per availability zone"
   default     = 2
@@ -97,6 +103,34 @@ variable "gitlab_services_subnet_cidr" {
   description = "Cidr range to use for gitlab GKE services subnet"
 }
 
+variable "gitlab_master_subnet_cidr" {
+  default     = "10.4.0.0/28"
+  description = "Cidr range to use for gitlab GKE master subnet (only when private nodes are enabled)"
+}
+
+variable "gitlab_proxy_only_subnet_cidr" {
+  default     = "10.5.0.0/26"
+  description = "Cidr range to use for L7 ILB proxy-only range (when using GCLB)"
+}
+
+variable "use_gclb" {
+  type        = bool
+  default     = false
+  description = "Deploy Gitlab using GCLB, Managed Certificates and Autoneg"
+}
+
+variable "gclb_logging" {
+  type        = bool
+  default     = false
+  description = "Enable GCLB logging"
+}
+
+variable "gcs_uniform_access" {
+  type        = bool
+  default     = true
+  description = "Use Uniform Bucket Level Access"
+}
+
 variable "helm_chart_version" {
   type        = string
   default     = "5.0.3"
@@ -108,3 +142,4 @@ variable "allow_force_destroy" {
   default     = false
   description = "Allows full cleanup of resources by disabling any deletion safe guards"
 }
+
